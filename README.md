@@ -27,9 +27,27 @@ All images has a size of 256px split into train, validation, and test set. each 
 4. Deploy
 
 ### Preparing the dataset
+For this project we used Google Colab to train our models. With limited runtime, it's a waste of time to upload dataset to colab every time we want to tain our model. So we downloaded the dataset to personal Google Drive then mount to Colab to use it.
+
+Check save_dataset_to_drive.ipynb to directly download kaggle dataset to Google Drive (it's alot faster than download and upload manually)
 
 ### Train models
+See real_vs_fake_face(densenet).ipynb and real_vs_fake_face(cnn).ipynb
+
+#### Preprocessing
+ImageDataGenerator is convenient tool for preprocessing image dataset. You can create image generator that is ready for your model to train. By splitting images to train and validation set then to label classes folder. You can also augment your dataset with this.
+
+#### Train
+Some tips on training
+- you train much faster when you have smaller image size, so on image_datagen.flow_from_directory, you can make image smaller by changing the target_size parameter (try smallest size without sacrificing loss/accuracy)
+
+Note: from our training, our Densenet model train much faster than our CNN model
 
 ### Compare and evaluate
+See Models_Evaluation.ipynb
+
+we used sklearn.metrics.classification_report to evaluate the model, it shows accuracy, precision, recall, and f1 score.
+
+Based on our evaluation our Densenet model perform much better than our CNN model
 
 ### Deploy
